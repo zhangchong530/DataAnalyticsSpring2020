@@ -1,0 +1,28 @@
+rm(list=ls())
+library(readxl)
+setwd("C:\\Users\\Lenovo\\Desktop\\homework&slide\\data analytics")
+EPI_data<-read.csv("2010EPI_data.csv",skip=1)
+EPI_data2<-read_xls("2010EPI_data.xls",sheet="EPI2010_onlyEPIcountries")
+View(EPI_data)
+attach(EPI_data)
+fix(EPI_data)
+EPI
+tf<-is.na(EPI)
+E<-EPI[!tf]
+summary(EPI)
+fivenum(EPI,na.rm=TRUE)
+stem(EPI)
+hist(EPI)
+hist(EPI,seq(30.,95.,1.0),pro=TRUE)
+lines(density(EPI,na.rm=TRUE,bw=1.))
+rug(EPI)
+windows() ## create window to plot your file
+## ... your plotting code here ...
+plot(ecdf(EPI), do.points=FALSE, verticals=TRUE) 
+par(pty="s")
+qqnorm(EPI)
+qqline(EPI)
+x<-seq(30,95,1)
+qqplot(qt(ppoints(250),df=5),x,xlab="Q-Q plot for t dsn")
+qqline(x)
+dev.off()
